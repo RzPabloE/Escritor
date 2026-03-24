@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Writing Coach - Edición Avanzada</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --bg: #ecf0f1;
+            --text: #333;
+            --success: #27ae60;
+            --error: #e74c3c;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #1a252f;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 1rem 2rem;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        nav button:hover, nav button.active {
+            background-color: var(--secondary);
+        }
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .section { display: none; }
+        .section.active { display: block; }
+        h2 { color: var(--primary); border-bottom: 2px solid var(--secondary); padding-bottom: 0.5rem; }
+        
+        textarea {
+            width: 100%;
+            height: 220px;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            resize: vertical;
+            box-sizing: border-box;
+            font-size: 1.1rem;
+            transition: border-color 0.3s;
+        }
+        textarea:focus { border-color: var(--secondary); outline: none; }
+        
+        button.action-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 1rem;
+            width: 100%;
+            transition: transform 0.1s, background 0.3s;
+        }
+        button.action-btn:hover { background-color: #2980b9; }
+        button.action-btn:active { transform: scale(0.98); }
+
+        .results {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .results { grid-template-columns: 1fr 1fr; }
+        }
+        .card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-left: 4px solid var(--secondary);
+            border-radius: 4px;
+            height: fit-content;
+        }
+        .checklist-item { margin: 0.5rem 0; display: flex; align-items: center; }
+        .pass { color: var(--success); font-weight: bold; }
+        .fail { color: var(--error); font-weight: bold; }
+        
+        .report-section { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #eee; }
+        .report-section:last-child { border-bottom: none; }
+        .report-section h4 { margin: 0 0 0.5rem 0; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; background: white; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: var(--primary); color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Scientific Writing Coach</h1>
+    <p>Perfecciona tu prosa académica con análisis estructural y estilístico</p>
+</header>
+
+<nav>
+    <button class="tab-btn active" onclick="showSection('tutorial', this)">1. Tutorial</button>
+    <button class="tab-btn" onclick="showSection('recursos', this)">2. Recursos</button>
+    <button class="tab-btn" onclick="showSection('evaluador', this)">3. Evaluador de Texto</button>
+</nav>
+
+<div class="container">
+    <div id="tutorial" class="section active">
+        <h2>Estructura de un Párrafo Científico</h2>
+        <p>Un párrafo científico ideal debe ser una unidad de pensamiento coherente. No intentes abarcar múltiples temas; desarrolla una idea por párrafo.</p>
+        
+        <h3>Métricas de Referencia</h3>
+        <ul>
+            <li><strong>Extensión:</strong> 100 - 200 palabras.</li>
+            <li><strong>Densidad:</strong> 4 a 8 oraciones por párrafo.</li>
+            <li><strong>Legibilidad:</strong> Oraciones de 15 a 25 palabras en promedio.</li>
+        </ul>
+
+        <h3>La Anatomía del Párrafo</h3>
+        <ol>
+            <li><strong>Topic Sentence:</strong> La tesis o idea central.</li>
+            <li><strong>Supporting Sentences:</strong> Evidencia, citas y datos.</li>
+            <li><strong>Concluding Sentence:</strong> Cierre o puente hacia el siguiente tema.</li>
+        </ol>
+    </div>
+
+    <div id="recursos" class="section">
+        <h2>Diccionario de Conectores Lógicos</h2>
+        <p>Utiliza estos términos para guiar al lector a través de tu argumento.</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Propósito</th>
+                    <th>Conectores Recomendados</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Adición</strong></td>
+                    <td>Además, asimismo, también, sumado a esto, adicionalmente, de igual manera, cabe agregar que.</td>
+                </tr>
+                <tr>
+                    <td><strong>Contraste</strong></td>
+                    <td>Sin embargo, en contraste, por el contrario, no obstante, a pesar de, pese a ello, por otro lado.</td>
+                </tr>
+                <tr>
+                    <td><strong>Causa / Efecto</strong></td>
+                    <td>Por lo tanto, en consecuencia, debido a, como resultado, por consiguiente, por ende, dado que.</td>
+                </tr>
+                <tr>
+                    <td><strong>Ejemplificación</strong></td>
+                    <td>Por ejemplo, en particular, específicamente, a saber, tales como, para ilustrar, de hecho.</td>
+                </tr>
+                <tr>
+                    <td><strong>Secuencia</strong></td>
+                    <td>En primer lugar, posteriormente, finalmente, previamente, acto seguido, en última instancia.</td>
+                </tr>
+                <tr>
+                    <td><strong>Énfasis / Claridad</strong></td>
+                    <td>Es decir, en otras palabras, cabe destacar, es preciso señalar, particularmente, fundamentalmente.</td>
+                </tr>
+                <tr>
+                    <td><strong>Resumen</strong></td>
+                    <td>En síntesis, en resumen, en definitiva, para finalizar, en conjunto, globalmente.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="evaluador" class="section">
+        <h2>Evaluador de Texto Científico</h2>
+        <p>Introduce tu párrafo para analizar su cohesión, concisión y estructura.</p>
+        <textarea id="texto-input" placeholder="Pega aquí tu párrafo..."></textarea>
+        <button class="action-btn" onclick="evaluarTexto()">Analizar Párrafo</button>
+
+        <div class="results" id="resultados" style="display: none;">
+            <div class="card">
+                <h3>📊 Checklist Estructural</h3>
+                <div id="checklist-output"></div>
+            </div>
+            <div class="card">
+                <h3>🧠 Análisis de Estilo e IA</h3>
+                <div id="ia-reporte"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showSection(sectionId, btn) {
+        document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(sectionId).classList.add('active');
+        btn.classList.add('active');
+    }
+
+    function evaluarTexto() {
+        const text = document.getElementById('texto-input').value.trim();
+        if (!text) {
+            alert("Por favor, ingresa un texto para evaluar.");
+            return;
+        }
+
+        // --- 1. PROCESAMIENTO DE DATOS ---
+        const words = text.split(/\s+/).filter(w => w.length > 0);
+        const sentences = text.split(/(?<=[.!?])\s+(?=[A-ZÁÉÍÓÚÑ])/).filter(s => s.trim().length > 0);
+        
+        const wordCount = words.length;
+        const sentenceCount = sentences.length;
+        const avgWordsPerSentence = sentenceCount > 0 ? (wordCount / sentenceCount).toFixed(1) : 0;
+
+        // --- 2. CHECKLIST ---
+        const checkWords = wordCount >= 100 && wordCount <= 200;
+        const checkSentences = sentenceCount >= 4 && sentenceCount <= 8;
+        const checkAvg = avgWordsPerSentence <= 25 && avgWordsPerSentence >= 15;
+
+        document.getElementById('checklist-output').innerHTML = `
+            <div class="checklist-item"><span class="${checkWords ? 'pass' : 'fail'}">${checkWords ? '✓' : '✗'}</span>&nbsp;<strong>Longitud:</strong> ${wordCount} palabras (Meta: 100-200).</div>
+            <div class="checklist-item"><span class="${checkSentences ? 'pass' : 'fail'}">${checkSentences ? '✓' : '✗'}</span>&nbsp;<strong>Oraciones:</strong> ${sentenceCount} (Meta: 4-8).</div>
+            <div class="checklist-item"><span class="${checkAvg ? 'pass' : 'fail'}">${checkAvg ? '✓' : '✗'}</span>&nbsp;<strong>Promedio:</strong> ${avgWordsPerSentence} palabras/oración (Meta: 15-25).</div>
+        `;
+
+        // --- 3. ANÁLISIS DE COHESIÓN (LISTA AMPLIADA) ---
+        const textLower = text.toLowerCase();
+        const conectores = [
+            "además", "asimismo", "adicionalmente", "por otra parte", "cabe agregar",
+            "sin embargo", "en contraste", "por el contrario", "no obstante", "a pesar de", "pese a ello",
+            "por lo tanto", "en consecuencia", "debido a", "como resultado", "por consiguiente", "por ende", "dado que",
+            "por ejemplo", "en particular", "específicamente", "a saber", "tales como", "de hecho",
+            "en primer lugar", "posteriormente", "finalmente", "previamente", "en última instancia",
+            "es decir", "en otras palabras", "cabe destacar", "es preciso señalar",
+            "en síntesis", "en resumen", "en definitiva", "globalmente"
+        ];
+
+        let conectoresEncontrados = conectores.filter(c => textLower.includes(c));
+        let reportHtml = `<div class="report-section"><h4>🔗 Cohesión y Fluidez</h4>`;
+        
+        if (conectoresEncontrados.length === 0) {
+            reportHtml += `<p>❌ <strong>Alerta:</strong> No se detectaron conectores. El texto puede leerse fragmentado. Intenta usar términos de transición como "Por consiguiente" o "No obstante".</p>`;
+        } else {
+            reportHtml += `<p>✅ Se detectaron <strong>${conectoresEncontrados.length}</strong> conectores: <em>${conectoresEncontrados.join(', ')}</em>. Esto asegura una buena transición entre ideas.</p>`;
+        }
+        reportHtml += `</div>`;
+
+        // --- 4. VOZ Y TONO ---
+        const regexPasiva = /\b(fue|fueron|es|son|ha sido|han sido|será|serán)\s+\w+(ado|ada|ados|adas|ido|ida|idos|idas)\b/gi;
+        const pasivasMatch = text.match(regexPasiva);
+        
+        reportHtml += `<div class="report-section"><h4>🗣️ Voz y Tono</h4>`;
+        if (pasivasMatch) {
+            const unicas = [...new Set(pasivasMatch)];
+            reportHtml += `<p>⚠️ Se detectó voz pasiva: <em>${unicas.join(', ')}</em>. En ciencia moderna se prefiere la voz activa o el 'se' impersonal (ej. 'Se midió' en lugar de 'Fue medido').</p>`;
+        } else {
+            reportHtml += `<p>✅ Voz activa predominante o uso correcto de formas impersonales.</p>`;
+        }
+        reportHtml += `</div>`;
+
+        // --- 5. CONCISIÓN ---
+        const redundancias = [
+            { f: "debido al hecho de que", s: "porque" },
+            { f: "una gran cantidad de", s: "muchos" },
+            { f: "con el propósito de", s: "para" },
+            { f: "absolutamente esencial", s: "esencial" }
+        ];
+        let alertas = redundancias.filter(r => textLower.includes(r.f));
+
+        reportHtml += `<div class="report-section"><h4>✂️ Concisión</h4>`;
+        if (alertas.length > 0) {
+            reportHtml += `<p>Sugerencias de simplificación:</p><ul>`;
+            alertas.forEach(a => reportHtml += `<li>"${a.f}" → <strong>${a.s}</strong></li>`);
+            reportHtml += `</ul>`;
+        } else {
+            reportHtml += `<p>✅ No se detectaron redundancias comunes. El lenguaje es directo.</p>`;
+        }
+        reportHtml += `</div>`;
+
+        document.getElementById('ia-reporte').innerHTML = reportHtml;
+        document.getElementById('resultados').style.display = 'grid';
+        
+        // Scroll suave a los resultados
+        document.getElementById('resultados').scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
